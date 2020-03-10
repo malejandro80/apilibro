@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\client;
 
 class ClientSeeder extends Seeder
 {
@@ -11,6 +12,12 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
-        //
+
+        client::create([
+            'name' => 'maria',
+            'surname' => 'perez',
+            'email' => 'maria@hotmail.com',
+            'wallet' => 500,
+        ]);
     }
 }

@@ -1,78 +1,117 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# README
+#### algunos puntos a aclarar
+1. no entendi muy bien si la reservacion de libros es igual a la compra de un libro, por lo que he agregado un campo 'status' que varia entre reservado y vendido
+2. no entendi muy bien el punto de los cupones de ayuda
+3. aca se deja la documentacion de los endponits
+___
+Ruta: **GET**  http://127.0.0.1:8000/api/book
+**Descripcion:** trae todos los libros guardados
+**Parametros:**
+**headers:**
+- Accept: application/json
+___
+Ruta: **POST**  http://127.0.0.1:8000/api/book
+**Descripcion:** guarda un nuevo libro 
+**Parametros:**
+- name (string): nombre del libro
+- cant (int): cantidad de unidades disponibles
+- fk_idAutor (int): clave foranea id del autor
+- price (int): precio del libro
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+**headers:**
+- Accept: application/json
+___
+Ruta: **GET**   http://127.0.0.1:8000/api/book/{ id } 
+**Descripcion:** trae un libro especifico se busca por id.
+**Parametros:**
+- PATH : id (int): id del libro a buscar
 
-## About Laravel
+**headers:**
+- Accept: application/json
+___
+Ruta: **PUT**   http://127.0.0.1:8000/api/book/{ id } 
+**Descripcion:** Actualiza un libro
+**Parametros:**
+- PATH : id (int): id del libro a buscar
+- name (string): nombre del libro
+- cant (int): cantidad de unidades disponibles
+- fk_idAutor (int): clave foranea id del autor
+- price (int): precio del libro
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**headers:**
+- Accept: application/json
+**NOTA:** parsear como x-www-form-urlencoded
+___
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Ruta: **DELETE**   http://127.0.0.1:8000/api/book/{ id } 
+**Descripcion:** elimina un libro
+**Parametros:**
+- PATH : id (int): id del libro a buscar
+**headers:**
+- Accept: application/json
 
-## Learning Laravel
+___
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Ruta: **POST**   http://127.0.0.1:8000/api/reservation
+**Descripcion:** crea una nueva de reservacion de un libro 
+**Parametros:**
+- cant (int): cantidad de libros reservados
+- idClient (int): llave foranea id del cliente
+- idBook (int): llave foranea id del libro a reservar;
+- status (string) = reservado : estatus del libro
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+**headers:**
+- Accept: application/json
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+___
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+Ruta: **POST**   http://127.0.0.1:8000/api/offer
+**Descripcion:** inserta una nueva oferta
+**Parametros:**
+- name (string): nombre de la oferta           
+- cant (int): cantidad de libros disponibles para la oferta   
+- idBook (int): clave foranea id del libro de la oferta 
+- percent (int): porcentaje de oferta (del 1 al 100) 
+- endOffer (date): fecha de culminacion de la oferta
 
-## Contributing
+**headers:**
+- Accept: application/json
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+___
 
-## Code of Conduct
+Ruta: **GET**   http://127.0.0.1:8000 api/salesReport
+**Descripcion:** exporta reporte de ventas en formato CSV
+**Parametros:**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**headers:**
+- Accept: application/json
+- id (int): id del cliente a realizar el reporte
+- desde(string):'0000-00-00' rango de fecha inicial
+- desde(string):'0000-00-00' rango de fecha final
+- status (string) = 'reservado' 
 
-## Security Vulnerabilities
+___
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Ruta: **GET**   http://127.0.0.1:8000 api/transactions/balance
+**Descripcion:** muestra el balance de los usuarios
+**Parametros:**
 
-## License
+**headers:**
+- Accept: application/json
+- id (int): id del cliente a realizar el reporte
+- person (string) = client/author: tipo de persona a buscar el balance 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+___
+
+Ruta: **GET**  http://127.0.0.1:8000 api/transactions/sales
+**Descripcion:** muestra muestra las ventas de un autor (tambien puede mostrar las reservaciones)
+**Parametros:**
+
+**headers:**
+- Accept: application/json
+- id (int): id del autor 
+- desde (string) '0000-00-00': fecha de inicio de la busqueda
+- desde (string) '0000-00-00': fecha de fin de la busqueda
+- status (string): reservado/vendido

@@ -1,5 +1,5 @@
 <?php
-
+use App\author;
 use Illuminate\Database\Seeder;
 
 class AuthorSeeder extends Seeder
@@ -11,6 +11,13 @@ class AuthorSeeder extends Seeder
      */
     public function run()
     {
-        //
+
+        author::create([
+            'name' => 'jesus',
+            'surname' => 'martinez',
+            'email' => 'prueba@hotmail.com',
+            'wallet' => 500,
+        ]);
+
     }
 }
