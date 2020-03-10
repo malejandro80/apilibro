@@ -9,14 +9,18 @@ use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
+
     /**
      * The event listener mappings for the application.
      *
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        'App\Events\sucessfullReservation' => [
+            'App\Listener\SendEmailNotification',
+        ],
+        'App\Events\newBookCreated' => [
+            'App\Listener\SendEmailNotificationToClients',
         ],
     ];
 

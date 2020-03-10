@@ -19,11 +19,20 @@ class CreateClientBooksTable extends Migration
             $table->unsignedBigInteger('fk_idBook');
             $table->string('status');
             $table->integer('cant');
+            $table->integer('offer_percent')->default(0);
+            $table->decimal('amount', 8, 2);
             $table->timestamps();
 
-            
-            $table->foreign('fk_idClient')->references('id')->on('clients');
-            $table->foreign('fk_idBook')->references('id')->on('books');
+
+            $table->foreign('fk_idClient')
+                  ->references('id')
+                  ->on('clients')
+                  ->onUpdate('cascade');
+
+            $table->foreign('fk_idBook')
+                  ->references('id')
+                  ->on('books')
+                  ->onUpdate('cascade');
         });
     }
 

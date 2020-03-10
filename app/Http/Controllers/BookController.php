@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\newBookCreated;
 use App\book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\bookRequest;
+
 
 class BookController extends Controller
 {
@@ -25,25 +28,13 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(bookRequest $request)
     {
-        $this->validate($request, [
-            'name'       => 'required',
-            'cant'       => 'required',
-            'fk_idAutor' => 'required',
-        ], [
-            'name.required'       => 'El Campo es requerido',
-            'cant.required'       => 'El Campo es requerido',
-            'fk_idAutor.required' => 'El Campo es requerido',
-
-        ]);
-
-
-
-
         try {
             $book = new book($request->all());
             $book->save();
+
+            event(new newBookCreated($request->get('fk_idAutor')));
 
             $response = [
                 'msj'   => 'Libro guardado exitosamente',
@@ -81,7 +72,7 @@ class BookController extends Controller
     public function update(Request $request, book $book)
     {
         try {
-            $book->update($request->all());
+            book::update($request->all());
 
             Log::error('Ha ocurrido un error en BookController: ' . $e->getMessage() . ', Linea: ' . $e->getLine());
 

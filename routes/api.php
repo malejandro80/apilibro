@@ -19,4 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('book', 'bookController');
 Route::post('reservation', 'reservationController@store');
+Route::post('offer', 'OfferController@store');
 Route::get('salesReport', 'salesReportController@download');
+Route::get('transactions/balance', 'transactionsController@balance');
+Route::get('transactions/sales', 'transactionsController@sales');

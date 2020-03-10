@@ -10,9 +10,13 @@ class salesReport implements FromCollection
 {
     use Exportable;
 
-    public function __construct(int $idAuthor)
+    public function __construct(object $request)
     {
-        $this->idAuthor = $idAuthor;
+        $this->id = $request->header('id');
+        $this->desde = $request->header('desde');
+        $this->hasta = $request->header('hasta');
+        $this->status = $request->header('status');
+
     }
 
     /**
@@ -20,6 +24,6 @@ class salesReport implements FromCollection
     */
     public function collection()
     {
-        return (new client_book())->sales($this->idAuthor);
+        return (new client_book())->sales($this->id,$this->desde,$this->hasta,$this->status);
     }
 }
